@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Member</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ member.id }}</td>
+            </tr>
+            <tr>
+                <th>Imagepath</th>
+                <td>{{ member.imagePath }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ member.title }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ member.description }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{% if member.date %}{{ member.date|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('members_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('members_edit', { 'id': member.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}
